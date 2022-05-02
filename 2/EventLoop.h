@@ -37,7 +37,7 @@ private:
     boost::scoped_ptr<Poller> poller_;
     ChannelList activeChannels_;
 
-    TimerQueue* timerQueue_;
+    boost::scoped_ptr<TimerQueue> timerQueue_;
 
 public:
     EventLoop(/* args */);

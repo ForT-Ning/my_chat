@@ -17,7 +17,7 @@ struct timespec howMuchTimeFromNow(Timestamp when)
     }
     struct timespec ts;
     ts.tv_sec = static_cast<time_t>(microseconds / Timestamp::kMicroSecondsPerSecond);
-    ts.tv_nsec = static_cast<time_t>((microseconds / Timestamp::kMicroSecondsPerSecond) * 1000);
+    ts.tv_nsec = static_cast<long>((microseconds % Timestamp::kMicroSecondsPerSecond) * 1000);
 
     return ts;
 }
@@ -27,7 +27,7 @@ void readTimerfd(int timerfd, Timestamp now)
     uint64_t howmany;
     ssize_t n = ::read(timerfd, &howmany, sizeof howmany);
 
-    printf("TimerQueue::handleRead() %ld at %s \n", howmany, now.toString().c_str());
+    //printf("TimerQueue::handleRead() %ld at %s \n", howmany, now.toString().c_str());
 
     if( n != sizeof howmany)
     {

@@ -16,7 +16,7 @@ Timestamp Poller::poll(int timeoutMs, ChannelList* activeChannels)
     Timestamp now(Timestamp::now());
     if(numEvents > 0)
     {
-        printf("%d events happensd\n", numEvents);
+        //printf("%d events happensd\n", numEvents);
         fillActiveChannels(numEvents, activeChannels);
     }
     else if (numEvents == 0)

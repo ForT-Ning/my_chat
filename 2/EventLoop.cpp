@@ -18,7 +18,8 @@ __thread EventLoop* t_loopInThisThread = 0;
 const int kPollTimeMs = 10000;
 
 EventLoop::EventLoop(/* args */) : 
-    looping_(false), quit_(false), threadId_(getCtid()), poller_(new Poller(this))
+    looping_(false), quit_(false), threadId_(getCtid()), 
+    poller_(new Poller(this)), timerQueue_(new TimerQueue(this))
 {
     printf("EventLoop created: %d \n", threadId_);
     if(t_loopInThisThread)

@@ -10,7 +10,6 @@ EventLoop* g_loop;
 
 int cnt = 0;
 
-
 void printfTid()
 {
     printf("pid = %d, tid = %d\n", getpid(), getCtid());
@@ -32,7 +31,7 @@ int main(int argc, char* argv[])
     EventLoop loop;
     g_loop = &loop;
 
-    printf("main");
+    print("main");
     loop.runAfter(1, boost::bind(print, "once1"));
     loop.runAfter(1.5, boost::bind(print, "once1.5"));
     loop.runAfter(2.5, boost::bind(print, "once2.5"));
