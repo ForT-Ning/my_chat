@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     loop.runAfter(2.5, boost::bind(print, "once2.5"));
     loop.runAfter(3.5, boost::bind(print, "once3.5"));
     loop.runEvery(2, boost::bind(print, "every2"));
-    loop.runEvery(3, boost::bind(print, "every3"));
+    loop.runEvery(3 , boost::bind(print, "every3"));
 
     loop.loop();
     print("main loop exits");
