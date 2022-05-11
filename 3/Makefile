@@ -1,5 +1,5 @@
 LIB_SRC = Channel.cpp EventLoop.cpp Poller.cpp Timer.cpp TimerQueue.cpp ./datetime/Timestamp.cc
-BINARIES = main test1
+BINARIES =  test2
 
 all: $(BINARIES)
 
@@ -11,5 +11,6 @@ $(BINARIES):
 clean:
 	rm -f $(BINARIES) core
 
-main: main.cpp
-test1: test1.cpp
+#main: main.cpp
+#test1: test1.cpp
+test2: test2.cpp

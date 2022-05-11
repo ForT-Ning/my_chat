@@ -21,7 +21,7 @@ Timestamp Poller::poll(int timeoutMs, ChannelList* activeChannels)
     }
     else if (numEvents == 0)
     {
-        printf("nothing happened \n");
+        ;//printf("nothing happened \n");
     }
     else
     {
@@ -51,7 +51,7 @@ void Poller::fillActiveChannels(int numEvents, ChannelList* activeChannels) cons
 void Poller::updateChannel(Channel* channel)
 {
     assertInLoopThread();
-    printf("fd=%d, events = %d\n", channel->fd(), channel->events());
+    //printf("fd=%d, events = %d\n", channel->fd(), channel->events());
     if(channel->index() < 0)
     {
         //assert(channels_.find(channel->fd()) == channels_.end());

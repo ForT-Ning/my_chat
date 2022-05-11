@@ -14,6 +14,8 @@
 #include <assert.h>
 #include <pthread.h>
 
+extern pid_t getCtid();
+
 namespace muduo
 {
 
@@ -34,7 +36,7 @@ class MutexLock : boost::noncopyable
 
   bool isLockedByThisThread()
   {
-    return holder_ == CurrentThread::tid();
+    return holder_ == getCtid();
   }
 
   void assertLocked()
@@ -47,7 +49,7 @@ class MutexLock : boost::noncopyable
   void lock()
   {
     pthread_mutex_lock(&mutex_);
-    holder_ = CurrentThread::tid();
+    holder_ = getCtid();
   }
 
   void unlock()

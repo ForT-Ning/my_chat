@@ -55,6 +55,8 @@ public:
 
     void queueInLoop(const Functor& cb);
 
+    void wakeup();
+
 private:
     /* data */
     void abortNotInLoopThread()
