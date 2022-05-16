@@ -40,6 +40,8 @@ class TimerQueue
         Channel timerfdChannel_;
 
         TimerList timers_;
+
+        void addTimerInLoop(Timer* timer);
 };
 
 

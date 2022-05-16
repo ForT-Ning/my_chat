@@ -55,7 +55,6 @@ EventLoop::EventLoop(/* args */) :
 EventLoop::~EventLoop()
 {
     assert(!looping_);
-
 }
 
 void EventLoop::updateChannel(Channel* channel)
@@ -169,7 +168,7 @@ void EventLoop::wakeup()
 
 void EventLoop::handleRead()
 {
-     uint64_t one = -1;
+    uint64_t one = -1;
     ssize_t n = ::read(wakeupFd_, &one, sizeof one);
     if( n != sizeof one)
     {

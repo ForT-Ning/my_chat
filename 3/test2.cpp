@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
+#include <muduo/base/Thread.h>
 
 #include "EventLoop.h"
+//#include "thread/Thread.h"
 
 EventLoop* g_loop;
 int g_flag = 0;
@@ -34,12 +37,32 @@ void run1()
 }
 
 
-int main(int argc, char **argv)
+// int main(int argc, char **argv)
+// {
+//     printf("main() pid = %d, flag = %d\n", getpid(), g_flag);
+//     EventLoop loop;
+//     g_loop = &loop;
+//     loop.runAfter(2, run1);
+//     loop.loop();
+//     printf("main() pid = %d, flag = %d\n", getpid(), g_flag);
+// }
+
+void print() {
+    printf("quit\n");
+    g_loop->quit();
+}
+
+void threadFunc()
 {
-    printf("main() pid = %d, flag = %d\n", getpid(), g_flag);
+    g_loop->runAfter(1.0, print);
+}
+
+int main()
+{
     EventLoop loop;
     g_loop = &loop;
-    loop.runAfter(2, run1);
+    muduo::Thread t(threadFunc);
+    t.start();
     loop.loop();
-    printf("main() pid = %d, flag = %d\n", getpid(), g_flag);
+    return 0;
 }

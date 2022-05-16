@@ -88,6 +88,14 @@ std::vector<TimerQueue::Entry> TimerQueue::getExpired(Timestamp now)
 TimerId TimerQueue::addTimer(const TimerCallback& cb, Timestamp when, double interval)
 {
     Timer* timer = new Timer(cb, when, interval);
+    
+    loop_->runInLoop(boost::bind(&TimerQueue::addTimerInLoop, this, timer));
+
+    return TimerId(timer);
+}
+
+void TimerQueue::addTimerInLoop(Timer* timer)
+{
     loop_->assertInLoopThread();
     bool earliestChange = insert(timer);
 
@@ -95,8 +103,6 @@ TimerId TimerQueue::addTimer(const TimerCallback& cb, Timestamp when, double int
     {
         resetTimerfd(timerfd_, timer->expiration());
     }
-
-    return TimerId(timer);
 }
 
 void TimerQueue::handleRead()
