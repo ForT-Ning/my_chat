@@ -1,5 +1,5 @@
-LIB_SRC = Channel.cpp EventLoop.cpp Poller.cpp Timer.cpp TimerQueue.cpp EventLoopThread.cpp ./datetime/Timestamp.cc ./thread/Thread.cc
-BINARIES =  test3
+LIB_SRC = Channel.cpp EventLoop.cpp Poller.cpp Timer.cpp TimerQueue.cpp EventLoopThread.cpp Acceptor.cpp InetAddress.cpp Socket.cpp SocketsOps.cpp ./datetime/Timestamp.cc ./thread/Thread.cc
+BINARIES =  test4
 
 all: $(BINARIES)
 
@@ -15,4 +15,5 @@ clean:
 
 #main: main.cpp
 #test1: test1.cpp
-test3: test3.cpp
+#test3: test3.cpp
+test4: test4.cpp

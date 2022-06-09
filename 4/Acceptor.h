@@ -4,6 +4,9 @@
 
 #include <boost/function.hpp>
 
+#include "Socket.h"
+#include "Channel.h"
+
 class InetAddress;
 class EventLoop;
 
@@ -23,6 +26,11 @@ class Acceptor
         void listen();
 
     private:
+        void handelRead();
+
+        EventLoop* loop_;
+        Socket acceptSocket_;
+        Channel acceptChannel_;
         newConnectionCallback newConnectionCallback_;
         bool listenning_;
 };
