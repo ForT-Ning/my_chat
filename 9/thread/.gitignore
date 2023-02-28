@@ -1,0 +1,7 @@
+main
+test
+test[1-9]
+test[1-9][1-9]
+a
+*.out
+*.o
